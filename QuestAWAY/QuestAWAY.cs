@@ -144,7 +144,7 @@ namespace QuestAWAY
 
                 Svc.Commands.AddHandler("/questaway", new CommandInfo(delegate { configGui.IsOpen = !configGui.IsOpen; })
                 {
-                    HelpMessage = "open/close configuration"
+                    HelpMessage = "설정 열기"
                 });
 
                 Svc.ClientState.TerritoryChanged += ClientState_TerritoryChanged;
