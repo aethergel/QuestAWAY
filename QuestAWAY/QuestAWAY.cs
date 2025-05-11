@@ -273,7 +273,7 @@ namespace QuestAWAY
                     | ImGuiWindowFlags.NoFocusOnAppearing
                     );
 
-                if (Static.ImGuiToggleButton(FontAwesomeIcon.ExclamationCircle, (CurrentProfile.Enabled ? "Disable" : "Enable") + " QuestAWAY", ref CurrentProfile.Enabled))
+                if (Static.ImGuiToggleButton(FontAwesomeIcon.ExclamationCircle, "QuestAWAY " + (CurrentProfile.Enabled ? "비활성화" : "활성화"), ref CurrentProfile.Enabled))
                 {
                     reprocessAreaMap = true;
                     reprocessNaviMap = true;
@@ -283,7 +283,7 @@ namespace QuestAWAY
 
                 ImGui.SameLine();
 
-                if (Static.ImGuiIconButton(FontAwesomeIcon.Cog, "QuestAWAY settings"))
+                if (Static.ImGuiIconButton(FontAwesomeIcon.Cog, "QuestAWAY 설정"))
                 {
                     configGui.IsOpen = true;
                 }
