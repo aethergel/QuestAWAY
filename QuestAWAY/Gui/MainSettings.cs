@@ -66,7 +66,7 @@ namespace QuestAWAY.Gui
             ImGui.Checkbox("미니맵에서 아이콘 숨기기", ref config.Minimap);
             ImGui.Checkbox("지도 상단에 빠른 활성화/비활성화, 설정 버튼 표시", ref config.QuickEnable);
 
-            if(ImGui.Checkbox("에테라이트 아이콘 항상 위에 표시 (Ctrl키를 사용해 반대로 표시)", ref config.AetheryteInFront))
+            if(ImGui.Checkbox("지도에서 에테라이트를 항상 위에 표시 (Ctrl키를 사용해 원래대로 표시)", ref config.AetheryteInFront))
             {
                 QuestAWAY.ApplyMemoryReplacer();
             }
