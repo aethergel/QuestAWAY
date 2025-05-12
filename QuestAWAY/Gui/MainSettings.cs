@@ -75,7 +75,7 @@ namespace QuestAWAY.Gui
             ImGui.InputTextMultiline("##QAUSERADD", ref config.CustomPathes, 1000000, new Vector2(300f, 100f));
             ImGui.Text("특별 숨김 옵션:");
             ImGui.Checkbox("돌발 구역 숨기기", ref config.HideFateCircles);
-            ImGui.Checkbox("랜드마크의 핀을 숨기고 이름만 표시", ref config.HideAreaMarkers);
+            ImGui.Checkbox("특정 장소에 꽂혀있는 핀 숨기기", ref config.HideAreaMarkers);
             ImGui.Text("종류:");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(200f);
