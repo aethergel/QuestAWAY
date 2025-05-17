@@ -8,17 +8,17 @@ namespace QuestAWAY.Gui
     {
         internal static void Draw()
         {
-            ImGui.Checkbox("[dev] Enable texture collecting", ref P.collect);
+            ImGui.Checkbox("[개발자] 텍스쳐 수집 활성화", ref P.collect);
 
             if (P.collect)
             {
-                if (ImGui.Button("Reset"))
+                if (ImGui.Button("초기화"))
                 {
                     P.texSet.Clear();
                 }
 
                 ImGui.SameLine();
-                ImGui.Checkbox("Display textures", ref P.collectDisplay);
+                ImGui.Checkbox("텍스쳐 표시", ref P.collectDisplay);
 
                 if (P.collectDisplay)
                 {
@@ -32,7 +32,7 @@ namespace QuestAWAY.Gui
                             ImGui.PushStyleColor(ImGuiCol.Button, 0xff0000ff);
                         }
 
-                        if (ImGui.Button("Copy: " + e))
+                        if (ImGui.Button("복사: " + e))
                         {
                             ImGui.SetClipboardText(e);
                         }
@@ -51,13 +51,13 @@ namespace QuestAWAY.Gui
 
             ImGui.Separator();
 
-            if (ImGui.Button("Clear hidden textures list" + (ImGui.GetIO().KeyCtrl ? "" : " (hold ctrl and click)")) && ImGui.GetIO().KeyCtrl)
+            if (ImGui.Button("숨겨진 텍스쳐 리스트 지우기" + (ImGui.GetIO().KeyCtrl ? "" : " (Ctrl + 클릭)")) && ImGui.GetIO().KeyCtrl)
             {
                 P.cfg.HiddenTextures.Clear();
                 P.BuildHiddenByteSet();
             }
 
-            ImGui.Checkbox("Profiling", ref P.profiling);
+            ImGui.Checkbox("프로파일링", ref P.profiling);
 
             if (P.profiling)
             {

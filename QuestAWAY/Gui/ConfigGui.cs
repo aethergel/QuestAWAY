@@ -8,7 +8,7 @@ namespace QuestAWAY.Gui
 {
     internal class ConfigGui : Window
     {
-        public ConfigGui() : base("QuestAWAY configuration")
+        public ConfigGui() : base("QuestAWAY 설정")
         { }
 
         public override void OnClose()
@@ -29,9 +29,9 @@ namespace QuestAWAY.Gui
             P.reprocessNaviMap = true;
             PatreonBanner.DrawRight();
             ImGuiEx.EzTabBar("questaway", PatreonBanner.Text,
-                ("Global settings", MainSettings.Draw, null, true),
-                ("Per-zone settings", ZoneSettings.Draw, null, true),
-                ("Developer functions", DevSettings.Draw, null, true)
+                ("일반 설정", MainSettings.Draw, null, true),
+                ("지역별 설정", ZoneSettings.Draw, null, true),
+                ("개발자 기능", DevSettings.Draw, null, true)
                 );
         }
     }

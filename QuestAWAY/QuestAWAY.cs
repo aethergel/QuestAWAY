@@ -144,7 +144,7 @@ namespace QuestAWAY
 
                 Svc.Commands.AddHandler("/questaway", new CommandInfo(delegate { configGui.IsOpen = !configGui.IsOpen; })
                 {
-                    HelpMessage = "open/close configuration"
+                    HelpMessage = "설정 열기"
                 });
 
                 Svc.ClientState.TerritoryChanged += ClientState_TerritoryChanged;
@@ -273,7 +273,7 @@ namespace QuestAWAY
                     | ImGuiWindowFlags.NoFocusOnAppearing
                     );
 
-                if (Static.ImGuiToggleButton(FontAwesomeIcon.ExclamationCircle, (CurrentProfile.Enabled ? "Disable" : "Enable") + " QuestAWAY", ref CurrentProfile.Enabled))
+                if (Static.ImGuiToggleButton(FontAwesomeIcon.ExclamationCircle, "QuestAWAY " + (CurrentProfile.Enabled ? "비활성화" : "활성화"), ref CurrentProfile.Enabled))
                 {
                     reprocessAreaMap = true;
                     reprocessNaviMap = true;
@@ -283,7 +283,7 @@ namespace QuestAWAY
 
                 ImGui.SameLine();
 
-                if (Static.ImGuiIconButton(FontAwesomeIcon.Cog, "QuestAWAY settings"))
+                if (Static.ImGuiIconButton(FontAwesomeIcon.Cog, "QuestAWAY 설정"))
                 {
                     configGui.IsOpen = true;
                 }
@@ -356,7 +356,7 @@ namespace QuestAWAY
             catch (Exception e)
             {
                 PluginLog.Error("=== Error during QuestAway plugin execution ===" + e.Message + "\n" + e.StackTrace);
-                Svc.Chat.Print("[QuestAway] An error occurred, please send your log to developer.");
+                Svc.Chat.Print("[QuestAway] 오류 발생, 개발자에게 로그를 전송해주세요.");
             }
         }
 

@@ -13,11 +13,11 @@ namespace QuestAWAY.Gui
     {
         internal static void Draw()
         {
-            ImGuiEx.Text(ImGuiColors.DalamudYellow, "You are editing global profile.");
+            ImGuiEx.Text(ImGuiColors.DalamudYellow, "일반 프로필을 수정 중입니다.");
 
             if (P.cfg.ZoneSettings.ContainsKey(Svc.ClientState.TerritoryType))
             {
-                ImGuiEx.Text(ImGuiColors.DalamudRed, "There are custom settings for current zone. Global settings are not effective.");
+                ImGuiEx.Text(ImGuiColors.DalamudRed, "현재 지역에 사용자 설정이 존재하므로 일반 설정은 사용되지 않습니다.");
             }
 
             DrawProfile(P.cfg);
@@ -25,7 +25,7 @@ namespace QuestAWAY.Gui
 
         internal static void DrawProfile(Configuration config)
         {
-            if (ImGui.Button("Copy settings to clipboard"))
+            if (ImGui.Button("설정 복사"))
             {
                 Safe(delegate
                 {
@@ -37,7 +37,7 @@ namespace QuestAWAY.Gui
 
             ImGui.SameLine();
 
-            if (ImGui.Button("Paste settings from clipboard") && ImGui.GetIO().KeyCtrl)
+            if (ImGui.Button("설정 붙혀넣기") && ImGui.GetIO().KeyCtrl)
             {
                 Safe(delegate
                 {
@@ -55,28 +55,28 @@ namespace QuestAWAY.Gui
                 });
             }
 
-            ImGuiEx.Tooltip("Hold CTRL and click button");
+            ImGuiEx.Tooltip("Ctrl + 클릭");
 
-            if (ImGui.Checkbox("Plugin enabled", ref config.Enabled))
+            if (ImGui.Checkbox("플러그인 활성화", ref config.Enabled))
             {
                 QuestAWAY.ApplyMemoryReplacer();
             }
 
-            ImGui.Checkbox("Hide icons on big map", ref config.Bigmap);
-            ImGui.Checkbox("Hide icons on minimap", ref config.Minimap);
-            ImGui.Checkbox("Display quick enable/disable on big map", ref config.QuickEnable);
+            ImGui.Checkbox("지도에서 아이콘 숨기기", ref config.Bigmap);
+            ImGui.Checkbox("미니맵에서 아이콘 숨기기", ref config.Minimap);
+            ImGui.Checkbox("지도 상단에 빠른 활성화/비활성화, 설정 버튼 표시", ref config.QuickEnable);
 
-            if(ImGui.Checkbox("Aetherytes always in front on big map (invert Ctrl key for Map)", ref config.AetheryteInFront))
+            if (ImGui.Checkbox("지도에서 에테라이트를 항상 위에 표시 (Ctrl키를 사용해 원래대로 표시)", ref config.AetheryteInFront))
             {
                 QuestAWAY.ApplyMemoryReplacer();
             }
 
-            ImGui.Text("Additional pathes to hide (one per line, without _hr1 and .tex)");
+            ImGui.Text("추가로 숨길 아이콘 경로 (한 줄에 하나씩, _hr1, .tex 없이 작성)");
             ImGui.InputTextMultiline("##QAUSERADD", ref config.CustomPathes, 1000000, new Vector2(300f, 100f));
-            ImGui.Text("Special hiding options:");
-            ImGui.Checkbox("Hide fate circles", ref config.HideFateCircles);
-            ImGui.Checkbox("Hide subarea markers, but keep text", ref config.HideAreaMarkers);
-            ImGui.Text("Category:");
+            ImGui.Text("특별 숨김 옵션:");
+            ImGui.Checkbox("돌발 구역 숨기기", ref config.HideFateCircles);
+            ImGui.Checkbox("특정 장소에 꽂혀있는 핀 숨기기", ref config.HideAreaMarkers);
+            ImGui.Text("종류:");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(200f);
 
@@ -93,13 +93,13 @@ namespace QuestAWAY.Gui
                 ImGui.EndCombo();
             }
 
-            ImGui.Text("Quick select:");
+            ImGui.Text("빠른 선택:");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100f);
 
-            if (ImGui.BeginCombo("##QASELOPT", "Select..."))
+            if (ImGui.BeginCombo("##QASELOPT", "선택..."))
             {
-                if (ImGui.Selectable("All"))
+                if (ImGui.Selectable("모두"))
                 {
                     if (P.selectedCategory == Category.All)
                     {
@@ -113,7 +113,7 @@ namespace QuestAWAY.Gui
                     P.BuildHiddenByteSet();
                 }
 
-                if (ImGui.Selectable("None"))
+                if (ImGui.Selectable("선택 안 함"))
                 {
                     if (P.selectedCategory == Category.All)
                     {
@@ -131,7 +131,7 @@ namespace QuestAWAY.Gui
             }
 
             ImGui.SameLine();
-            ImGui.Checkbox("Show only selected", ref P.onlySelected);
+            ImGui.Checkbox("선택한 항목만 표시", ref P.onlySelected);
 
             //ImGui.BeginChild("##QAWAYCHILD");
             ImGuiHelpers.ScaledDummy(10f);

@@ -17,15 +17,15 @@ namespace QuestAWAY.Gui
         {
             ImGuiEx.SetNextItemFullWidth();
 
-            if (ImGui.BeginCombo("##zSelector", zoneConfigId == 0 ? "Select zone..." : TerritoryName.GetTerritoryName(zoneConfigId)))
+            if (ImGui.BeginCombo("##zSelector", zoneConfigId == 0 ? "지역 선택..." : TerritoryName.GetTerritoryName(zoneConfigId)))
             {
                 ImGui.SetNextItemWidth(150f);
-                ImGui.InputTextWithHint("##fltr", "Filter...", ref Filter, 50);
+                ImGui.InputTextWithHint("##fltr", "검색...", ref Filter, 50);
                 ImGui.SameLine();
-                ImGui.Checkbox("Only zones with custom settings created", ref OnlyCreated);
+                ImGui.Checkbox("사용자 설정이 존재하는 지역만 표시", ref OnlyCreated);
                 ImGui.PushStyleColor(ImGuiCol.Text, ImGuiColors.DalamudViolet);
 
-                if (Svc.ClientState.LocalPlayer != null && ImGui.Selectable($"Current: {TerritoryName.GetTerritoryName(Svc.ClientState.TerritoryType)}"))
+                if (Svc.ClientState.LocalPlayer != null && ImGui.Selectable($"현재 지역: {TerritoryName.GetTerritoryName(Svc.ClientState.TerritoryType)}"))
                 {
                     zoneConfigId = Svc.ClientState.TerritoryType;
                 }
@@ -65,29 +65,29 @@ namespace QuestAWAY.Gui
 
             if (P.cfg.ZoneSettings.TryGetValue(zoneConfigId, out var zoneSettings))
             {
-                ImGuiEx.Text(ImGuiColors.DalamudYellow, $"You are editing profile for zone {TerritoryName.GetTerritoryName(zoneConfigId)}.");
+                ImGuiEx.Text(ImGuiColors.DalamudYellow, $"{TerritoryName.GetTerritoryName(zoneConfigId)}의 프로필을 수정 중입니다.");
                 ImGui.SameLine();
 
-                if (ImGui.SmallButton("Delete settings") && ImGui.GetIO().KeyCtrl)
+                if (ImGui.SmallButton("설정 제거") && ImGui.GetIO().KeyCtrl)
                 {
                     P.cfg.ZoneSettings.Remove(zoneConfigId);
                     P.ClientState_TerritoryChanged(Svc.ClientState.TerritoryType);
                 }
 
-                ImGuiEx.Tooltip("Hold CTRL and click");
+                ImGuiEx.Tooltip("Ctrl + 클릭");
 
                 if (zoneConfigId != Svc.ClientState.TerritoryType)
                 {
-                    ImGuiEx.Text(ImGuiColors.DalamudRed, "This is different zone than you are currently in.");
+                    ImGuiEx.Text(ImGuiColors.DalamudRed, "현재 지역과 다른 지역 입니다.");
                 }
 
                 MainSettings.DrawProfile(zoneSettings);
             }
             else
             {
-                ImGuiEx.Text($"For selected zone there are no custom settings. Global settings are used.");
+                ImGuiEx.Text($"선택된 지역에 사용자 설정이 존재하지 않으므로 일반 설정이 사용됩니다.");
 
-                if (zoneConfigId != 0 && ImGui.Button("Create custom settings"))
+                if (zoneConfigId != 0 && ImGui.Button("사용자 설정 생성"))
                 {
                     P.cfg.ZoneSettings.Add(zoneConfigId, new());
                     P.ClientState_TerritoryChanged(Svc.ClientState.TerritoryType);

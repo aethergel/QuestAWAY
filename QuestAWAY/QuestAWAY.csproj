@@ -24,7 +24,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+		<DalamudLibPath>$(appdata)\XIVLauncherKR\addon\Hooks\dev\</DalamudLibPath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -63,16 +63,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DalamudPackager" Version="11.0.0" />
+		<PackageReference Include="DalamudPackager" Version="11.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
+		<ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="QuestAWAY.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
+		<None Update="QuestAWAY.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 </Project>
